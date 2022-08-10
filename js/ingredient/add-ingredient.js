@@ -10,26 +10,25 @@ function postIngredient(ingredient) {
         .then(res => res.json())
         .then(res => showNotification());
 
-
 }
 
 /**
  * Get the form and submit it with fetch API
  */
-let ingredientForm = $("#ingredient-form");
-ingredientForm.submit(event => {
-
-    let ingredient = getIngredientData();
-    postIngredient(ingredient);
-
-    event.preventDefault();
-    event.currentTarget.reset();
-});
+ let ingredientForm = $("#ingredient-form");
+ ingredientForm.submit(event => {
+ 
+     let ingredient = getIngredientData();
+     postIngredient(ingredient);
+ 
+     event.preventDefault();
+     event.currentTarget.reset();
+ });
 
 /**
  * Gets the order data with JQuery
  */
-function getIngredientData() {
+ function getIngredientData() {
 
     return {
         name: $("input[name='name']").val(),
@@ -40,7 +39,7 @@ function getIngredientData() {
 /**
  * Shows a notification when the order is accepted
  */
-function showNotification() {
+ function showNotification() {
     let ingredientAlert = $("#ingredient-alert");
     ingredientAlert.toggle();
     setTimeout(() => ingredientAlert.toggle(), 5000);
