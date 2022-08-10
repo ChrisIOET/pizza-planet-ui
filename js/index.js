@@ -35,9 +35,9 @@ orderForm.submit(event => {
  * Gets the order data with JQuery
  */
 function getOrderData() {
-    let ingredients = [];
-    $.each($("input[name='ingredients']:checked"), function (el) {
-        ingredients.push($(this).val());
+    let items = [];
+    $.each($("input[name='items']:checked"), function (el) {
+        items.push($(this).val());
     });
 
     return {
@@ -46,7 +46,7 @@ function getOrderData() {
         client_address: $("input[name='address']").val(),
         client_phone: $("input[name='phone']").val(),
         size_id: $("input[name='size']:checked").val(),
-        ingredients
+        items
     };
 }
 
@@ -62,12 +62,12 @@ function showNotification() {
 
 // Gather information in a dynamic way
 
-function fetchIngredients() {
-    fetch('http://127.0.0.1:5000/ingredient/')
+function fetchItems() {
+    fetch('http://127.0.0.1:5000/item/')
         .then(response => response.json())
-        .then(ingredients => {
-            let rows = ingredients.map(element => createIngredientTemplate(element));
-            let table = $("#ingredients tbody");
+        .then(items => {
+            let rows = items.map(element => createItemTemplate(element));
+            let table = $("#items tbody");
             table.append(rows);
         });
 }
@@ -82,9 +82,9 @@ function fetchOrderSizes() {
         });
 }
 
-function createIngredientTemplate(ingredient) {
-    let template = $("#ingredients-template")[0].innerHTML;
-    return Mustache.render(template, ingredient);
+function createItemTemplate(item) {
+    let template = $("#items-template")[0].innerHTML;
+    return Mustache.render(template, item);
 }
 
 function createSizeTemplate(size) {
@@ -93,7 +93,7 @@ function createSizeTemplate(size) {
 }
 
 function loadInformation() {
-    fetchIngredients();
+    fetchItems();
     fetchOrderSizes();
 }
 

@@ -32,6 +32,7 @@ function getBeverageData() {
     return {
         name: $("input[name='name']").val(),
         price: $("input[name='price']").val(),
+        type: "beverage"
     };
 }
 

@@ -1,11 +1,11 @@
 
-function fetchIngredient(_id) {
-    fetch(`http://127.0.0.1:5000/ingredient/id/${_id}`)
+function fetchItem(_id) {
+    fetch(`http://127.0.0.1:5000/item/id/${_id}`)
         .then(response => response.json())
         .then(ingredient => {
-            $("#_id").val(ingredient._id);
-            $("#name").val(ingredient.name);
-            $("#price").val(ingredient.price);
+            $("#_id").val(item._id);
+            $("#name").val(item.name);
+            $("#price").val(item.price);
 
         });
 }
@@ -13,14 +13,14 @@ function fetchIngredient(_id) {
 function loadInformation() {
     let urlParams = new URLSearchParams(window.location.search);
     let _id = urlParams.get('_id');
-    fetchIngredient(_id)
+    fetchItem(_id)
 }
 
-function putIngredient(ingredient) {
+function putItem(item) {
 
-    fetch('http://127.0.0.1:5000/ingredient/', {
+    fetch('http://127.0.0.1:5000/item/', {
         method: 'PUT',
-        body: JSON.stringify(ingredient),
+        body: JSON.stringify(item),
         headers: {
             "Content-Type": "application/json; charset=utf-8",
         },
@@ -34,11 +34,11 @@ function putIngredient(ingredient) {
 /**
  * Get the form and submit it with fetch API
  */
-let ingredientForm = $("#ingredient-form");
-ingredientForm.submit(event => {
+let itemForm = $("#item-form");
+itemForm.submit(event => {
 
-    let ingredient = getIngredientData();
-    putIngredient(ingredient);
+    let item = getItemData();
+    putItem(item);
 
     event.preventDefault();
     event.currentTarget.reset();
@@ -46,23 +46,24 @@ ingredientForm.submit(event => {
 });
 
 /**
- * Gets the ingredient data with JQuery
+ * Gets the item data with JQuery
  */
-function getIngredientData() {
+function getItemData() {
     return {
         _id: $("input[id='_id']").val(),
         name: $("input[id='name']").val(),
-        price: $("input[id='price']").val()
+        price: $("input[id='price']").val(),
+        // type: $("input[id='type']").val()
     };
 }
 
 /**
- * Shows a notification when the ingredient is accepted
+ * Shows a notification when the item is accepted
  */
 function showNotification() {
-    let ingredientAlert = $("#ingredient-alert");
-    ingredientAlert.toggle();
-    setTimeout(() => ingredientAlert.toggle(), 5000);
+    let itemAlert = $("#item-alert");
+    itemAlert.toggle();
+    setTimeout(() => itemAlert.toggle(), 5000);
 }
 
 
