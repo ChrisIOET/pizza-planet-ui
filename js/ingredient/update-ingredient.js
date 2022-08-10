@@ -1,11 +1,11 @@
 
-function fetchItem(_id) {
-    fetch(`http://127.0.0.1:5000/item/id/${_id}`)
+function fetchIngredient(_id) {
+    fetch(`http://127.0.0.1:5000/ingredient/id/${_id}`)
         .then(response => response.json())
         .then(ingredient => {
-            $("#_id").val(item._id);
-            $("#name").val(item.name);
-            $("#price").val(item.price);
+            $("#_id").val(ingredient._id);
+            $("#name").val(ingredient.name);
+            $("#price").val(ingredient.price);
 
         });
 }
@@ -13,14 +13,14 @@ function fetchItem(_id) {
 function loadInformation() {
     let urlParams = new URLSearchParams(window.location.search);
     let _id = urlParams.get('_id');
-    fetchItem(_id)
+    fetchIngredient(_id)
 }
 
-function putItem(item) {
+function putIngredient(ingredient) {
 
-    fetch('http://127.0.0.1:5000/item/', {
+    fetch('http://127.0.0.1:5000/ingredient/', {
         method: 'PUT',
-        body: JSON.stringify(item),
+        body: JSON.stringify(ingredient),
         headers: {
             "Content-Type": "application/json; charset=utf-8",
         },
@@ -34,11 +34,11 @@ function putItem(item) {
 /**
  * Get the form and submit it with fetch API
  */
-let itemForm = $("#item-form");
-itemForm.submit(event => {
+let ingredientForm = $("#ingredient-form");
+ingredientForm.submit(event => {
 
-    let item = getItemData();
-    putItem(item);
+    let ingredient = getIngredientData();
+    putIngredient(ingredient);
 
     event.preventDefault();
     event.currentTarget.reset();
@@ -46,9 +46,9 @@ itemForm.submit(event => {
 });
 
 /**
- * Gets the item data with JQuery
+ * Gets the ingredient data with JQuery
  */
-function getItemData() {
+function getIngredientData() {
     return {
         _id: $("input[id='_id']").val(),
         name: $("input[id='name']").val(),
@@ -58,12 +58,12 @@ function getItemData() {
 }
 
 /**
- * Shows a notification when the item is accepted
+ * Shows a notification when the ingredient is accepted
  */
 function showNotification() {
-    let itemAlert = $("#item-alert");
-    itemAlert.toggle();
-    setTimeout(() => itemAlert.toggle(), 5000);
+    let ingredientAlert = $("#ingredient-alert");
+    ingredientAlert.toggle();
+    setTimeout(() => ingredientAlert.toggle(), 5000);
 }
 
 

@@ -1,8 +1,8 @@
-function postItem(item) {
+function postIngredient(ingredient) {
 
-    fetch('http://127.0.0.1:5000/item/', {
+    fetch('http://127.0.0.1:5000/ingredient/', {
         method: 'POST',
-        body: JSON.stringify(item),
+        body: JSON.stringify(ingredient),
         headers: {
             "Content-Type": "application/json; charset=utf-8",
         },
@@ -15,11 +15,11 @@ function postItem(item) {
 /**
  * Get the form and submit it with fetch API
  */
-let itemForm = $("#item-form");
-itemForm.submit(event => {
+let ingredientForm = $("#ingredient-form");
+ingredientForm.submit(event => {
 
-    let item = getItemData();
-    postItem(item);
+    let ingredient = getIngredientData();
+    postIngredient(ingredient);
 
     event.preventDefault();
     event.currentTarget.reset();
@@ -28,12 +28,11 @@ itemForm.submit(event => {
 /**
  * Gets the order data with JQuery
  */
-function getItemData() {
+function getIngredientData() {
 
     return {
         name: $("input[name='name']").val(),
         price: $("input[name='price']").val(),
-        type: "ingredient"
     };
 }
 
@@ -41,7 +40,7 @@ function getItemData() {
  * Shows a notification when the order is accepted
  */
 function showNotification() {
-    let itemAlert = $("#item-alert");
-    itemAlert.toggle();
-    setTimeout(() => itemAlert.toggle(), 5000);
+    let ingredientAlert = $("#ingredient-alert");
+    ingredientAlert.toggle();
+    setTimeout(() => ingredientAlert.toggle(), 5000);
 }

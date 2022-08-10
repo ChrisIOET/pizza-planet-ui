@@ -1,15 +1,15 @@
 
 
-fetch('http://127.0.0.1:5000/item')
+fetch('http://127.0.0.1:5000/ingredient')
     .then(response => response.json())
-    .then(items => {
-        let rows = items.map(element => createItemTemplate(element));
-        let table = $("#items tbody");
+    .then(ingredients => {
+        let rows = ingredients.map(element => createIngredientTemplate(element));
+        let table = $("#ingredients tbody");
         table.append(rows);
     });
 
 
-function createItemTemplate(item) {
-    let template = $("#item-item-template")[0].innerHTML;
-    return Mustache.render(template, item);
+function createIngredientTemplate(ingredient) {
+    let template = $("#ingredient-ingredient-template")[0].innerHTML;
+    return Mustache.render(template, ingredient);
 }
