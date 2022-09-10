@@ -61,8 +61,8 @@
                                    <th class="col-2">max revenue</th>
                                    <th class="col-2">most requested ingredient</th>
                                    <th class="col-2">most revenue month</th>
-                                   <th class="col-3 text-center">top three customers</th>
-                                   <th class="col-3 text-center">top 3 customers values</th>
+                                   <th class="col-4 text-center">top three customers</th>
+                                   <th class="col-2 text-center">top 3 customers values</th>
                               </tr>
                          </thead>
                          <tbody></tbody>
@@ -76,8 +76,16 @@
                <td class="col-2">{{max_revenue}}</td>
                <td class="col-2">{{most_requested_ingredient}}</td>
                <td class="col-2">{{most_revenue_month}}</td>
-               <td class="col-3">${{top_3_customers}}</td>
-               <td class="col-3">${{top_3_customers_values}} </td>
+               <td class="col-4">
+                     {{#top_3_customers}} 
+                     {{.}}</br>
+                     {{/top_3_customers}} 
+               </td>
+               <td class="col-2">
+                    {{#top_3_customers_values}}
+                    {{.}}</br>
+                    {{/top_3_customers_values}}
+               </td>
           </tr>
      </template>
 
